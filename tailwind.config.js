@@ -2,8 +2,13 @@
 module.exports = {
   content: ["./src/**/*.{js,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+    },
+    fontFamily: {
+      primary: ["Overpass", "sans serif"]
+    }
   },
+  darkMode: 'class',
   plugins: [],
 }
 
