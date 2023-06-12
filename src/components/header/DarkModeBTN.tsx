@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { motion } from "framer-motion";
-import icons from "../common/SVGs";
+import icons from "../../misc/SVGs";
 
 type darkModeBTNProps = {
   darkModeHandler: () => void,
@@ -9,7 +9,7 @@ type darkModeBTNProps = {
 const DarkModeBTN = ({ darkModeHandler, darkMode }: darkModeBTNProps): ReactElement => {
   return (
     <button
-      className="relative ml-3 h-10 w-10 overflow-hidden rounded-e rounded-s border border-solid border-green-300 bg-green-50 outline-none hover:bg-green-300 dark:bg-transparent dark:text-green-300 dark:hover:bg-green-300 dark:hover:text-slate-900"
+      className="relative ml-3 h-10 w-10 overflow-hidden border border-solid border-green-300 bg-green-50 outline-none hover:bg-green-300 dark:bg-transparent dark:text-green-300 dark:hover:bg-green-300 dark:hover:text-slate-900"
       onClick={darkModeHandler}
     >
       {darkMode && <motion.div 

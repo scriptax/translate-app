@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
+import Footer from "./components/footer/Footer";
 
 function App() {
   console.log("rendered");
@@ -9,13 +10,16 @@ function App() {
     setDarkMode((prev) => !prev);
   };
   useEffect(() => {
-    console.log('run')
     document.body.parentElement?.classList[darkMode ? "add" : "remove"]("dark");
   }, [darkMode]);
+  useEffect(() => {
+    document.body.style.overflowY = "scroll"
+  }, []);
   return (
-    <div className="min-h-screen w-full font-primary bg-white dark:bg-slate-900">
+    <div className="min-h-screen w-full font-primary text-slate-800 bg-slate-50 dark:bg-slate-900">
       <Header darkModeHandler={darkModeHandler} darkMode={darkMode}/>
       <Main />
+      <Footer />
     </div>
   );
 }
