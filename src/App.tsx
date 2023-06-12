@@ -13,11 +13,11 @@ function App() {
     document.body.parentElement?.classList[darkMode ? "add" : "remove"]("dark");
   }, [darkMode]);
   useEffect(() => {
-    document.body.style.overflowY = "scroll"
+    document.body.style.overflowY = "scroll";
   }, []);
   return (
-    <div className="min-h-screen w-full font-primary text-slate-800 bg-slate-50 dark:bg-slate-900">
-      <Header darkModeHandler={darkModeHandler} darkMode={darkMode}/>
+    <div className="min-h-screen w-full bg-slate-50 font-primary text-slate-800 dark:bg-slate-900">
+      <Header darkModeHandler={darkModeHandler} darkMode={darkMode} />
       <Main />
       <Footer />
     </div>

@@ -5,7 +5,7 @@ import AlertBox from "../common/AlertBox";
 import ToSpeech from "./ToSpeech";
 
 function OutputSection(): ReactElement {
-  const {translation} = useContext(TransContext);
+  const { translation } = useContext(TransContext);
   const [copyMessage, setCopyMessage] = useState<string>("");
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -13,29 +13,38 @@ function OutputSection(): ReactElement {
   };
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
-    if(copyMessage) {
+    if (copyMessage) {
       timer = setTimeout(() => {
         setCopyMessage("");
       }, 2000);
     }
     return () => {
-      clearTimeout(timer)
+      clearTimeout(timer);
     };
   }, [copyMessage]);
   return (
-    <section className="p-3 min-h-[180px] min-h- w-full max-w-xl bg-neutral-100 dark:shadow-none dark:bg-slate-800 border-t-4 border-dashed border-slate-600 dark:border-slate-200">
+    <section className="min-h- min-h-[180px] w-full max-w-xl border-t-4 border-dashed border-slate-600 bg-neutral-100 p-3 dark:border-slate-200 dark:bg-slate-800 dark:shadow-none">
       <div className="flex justify-between">
-        <div dir="auto" className="w-full break-words min-h-[120px] outline-none text-lg bg-transparent dark:text-white text-black resize-none ">
+        <div
+          dir="auto"
+          className="min-h-[120px] w-full resize-none break-words bg-transparent text-lg text-black outline-none dark:text-white "
+        >
           {translation.output}
         </div>
         {/* <RoundBTN iconName="Close" description="Clear" handler={() => {}} /> Reserved */}
       </div>
-      <div className="relative top-1 w-full flex justify-between items-center">
+      <div className="relative top-1 flex w-full items-center justify-between">
         <div>
           {translation.output.length > 0 && (
             <>
-            <RoundBTN iconName="Copy" description="Copy translation" handler={() => {copyToClipboard(translation.output)}} />
-            <ToSpeech role="dest" />
+              <RoundBTN
+                iconName="Copy"
+                description="Copy translation"
+                handler={() => {
+                  copyToClipboard(translation.output);
+                }}
+              />
+              <ToSpeech role="dest" />
             </>
           )}
         </div>
