@@ -10,9 +10,9 @@ function AlertBox({ children }: PropType): ReactElement {
       {children && (
         <motion.div
           className="fixed bottom-10 left-4 z-50 h-12 border border-green-400 bg-green-100 p-2 pt-3 text-lg text-black shadow-lg "
-          initial={{ x: "-50vw" }}
+          initial={{ x: "-100vw" }}
           animate={{ x: "16px" }}
-          exit={{ x: "-50vw" }}
+          exit={{ x: "-100vw" }}
         >
           {children}
         </motion.div>
