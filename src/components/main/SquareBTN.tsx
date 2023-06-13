@@ -12,7 +12,7 @@ function SquareBTN({ iconName, handler, description }: props): ReactElement {
 
   return (
     <button
-      className={`relative h-10 w-10 rounded-sm border-none outline-none hover:bg-neutral-200 active:bg-neutral-300 dark:hover:bg-slate-700 dark:active:bg-slate-700 `}
+      className={`relative h-10 w-10 rounded-sm border-none outline-none hover:bg-neutral-200 active:bg-neutral-300 dark:hover:bg-slate-700 dark:active:bg-slate-700 dark:text-white`}
       onClick={handler}
       onMouseEnter={() => {
         setTooltip(true);
