@@ -56,6 +56,7 @@ function Main(): ReactElement {
     output: "",
   });
   const [netAlert, setNetAlert] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const fetchTranslation = async () => {
     let langpair = selectedLangs.src.code + "|" + selectedLangs.dest.code;
     let url = `https://api.mymemory.translated.net/get?q=${translation.input}&langpair=${langpair}`;
@@ -68,6 +69,7 @@ function Main(): ReactElement {
         setTranslation((prev) => {
           return { ...prev, output: decodeHTML(translation) };
         });
+        setLoading(false);
       } else {
         throw new Error(`Something went wrong: ${response.status}`);
       }
@@ -88,6 +90,7 @@ function Main(): ReactElement {
     clearTimeout(timer.current);
     timer.current = setTimeout(() => {
       if (translation.input.length > 0 && !netAlert) {
+        setLoading(true);
         fetchTranslation();
       } else {
         setTranslation((prev) => {
@@ -111,7 +114,7 @@ function Main(): ReactElement {
           <TransContext.Provider value={{ translation, setTranslation }}>
             <LangSection />
             <div className="relative w-full border-t border-neutral-300 dark:border-slate-700">
-              <InputSection />
+              <InputSection loading={loading} />
               <OutputSection />
             </div>
           </TransContext.Provider>

@@ -1,11 +1,15 @@
 import { ReactElement, useState, useRef, useEffect, useContext } from "react";
+import { TransContext } from "./Main";
 import RoundBTN from "./SquareBTN";
 import readClipboard from "../../misc/readClipboard";
-import { TransContext } from "./Main";
 import ToSpeech from "./ToSpeech";
 import AlertBox from "../common/AlertBox";
+import loadingGif from "../../assets/images/loading.gif";
 
-function InputSection(): ReactElement {
+type PropsType = {
+  loading: boolean
+}
+function InputSection({loading}: PropsType): ReactElement {
   const { translation, setTranslation } = useContext(TransContext);
   const textareaRef = useRef<HTMLTextAreaElement>(null); // only for adjusting height
   const [message, setMessage] = useState<string>("");
@@ -82,6 +86,7 @@ function InputSection(): ReactElement {
             }}
           />
           {translation.input.length > 0 && <ToSpeech role="src" />}
+          {loading && <img className="inline-block pb-2 dark:invert" width="24px" height="8px" src={loadingGif} alt="loading" />}
         </div>
         <div className="text-sm">{translation.input.length}/500</div>
       </div>
