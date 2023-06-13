@@ -7,7 +7,7 @@ function Footer(): ReactElement {
     setDate(new Date());
   }, []);
   return (
-    <footer className="relative -bottom-2 h-20 m-auto w-full max-w-xl px-4 dark:text-white sm:px-0">
+    <footer className="h-20 m-auto w-full max-w-xl px-4 dark:text-white sm:px-0">
       <div className="flex items-center justify-between">
         <span>© {date?.getFullYear()} By scriptax.</span>
         <a href="https://github.com/scriptax/translate-app" target="blank">

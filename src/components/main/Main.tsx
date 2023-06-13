@@ -105,17 +105,19 @@ function Main(): ReactElement {
     });
   }, []);
   return (
-    <main className="m-auto mb-5 w-[93%] max-w-xl border border-neutral-300 bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900 dark:text-white">
-      <LangContext.Provider value={{ selectedLangs, setSelectedLangs }}>
-        <TransContext.Provider value={{ translation, setTranslation }}>
-          <LangSection />
-          <div className="relative w-full border-t border-neutral-300 dark:border-slate-700">
-            <InputSection />
-            <OutputSection />
-          </div>
-        </TransContext.Provider>
-      </LangContext.Provider>
-      <AlertBox>{netAlert}</AlertBox>
+    <main className="flex-grow mx-auto w-[93%] max-w-xl">
+      <section className="w-full border border-neutral-300 bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900 dark:text-white">
+        <LangContext.Provider value={{ selectedLangs, setSelectedLangs }}>
+          <TransContext.Provider value={{ translation, setTranslation }}>
+            <LangSection />
+            <div className="relative w-full border-t border-neutral-300 dark:border-slate-700">
+              <InputSection />
+              <OutputSection />
+            </div>
+          </TransContext.Provider>
+        </LangContext.Provider>
+        <AlertBox>{netAlert}</AlertBox>
+      </section>
     </main>
   );
 }

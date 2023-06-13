@@ -16,7 +16,7 @@ function App() {
     document.body.style.overflowY = "scroll";
   }, []);
   return (
-    <div className="min-h-screen w-full bg-slate-50 font-primary text-slate-800 dark:bg-slate-900">
+    <div className="flex flex-col min-h-screen relative w-full bg-slate-50 font-primary text-slate-800 dark:bg-slate-900">
       <Header darkModeHandler={darkModeHandler} darkMode={darkMode} />
       <Main />
       <Footer />

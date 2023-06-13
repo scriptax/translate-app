@@ -50,7 +50,7 @@ function InputSection(): ReactElement {
 
   return (
     // we can also make the section flex and direction column to send the buttons to bottom
-    <section className="-mb-1 min-h-[160px] w-full max-w-xl p-3 dark:shadow-none">
+    <section className="-mb-1 min-h-[180px] w-full max-w-xl p-3 dark:shadow-none">
       <div className="flex justify-between">
         <div className="relative w-11/12 pt-2">
           <textarea

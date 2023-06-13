@@ -23,7 +23,7 @@ function OutputSection(): ReactElement {
     };
   }, [copyMessage]);
   return (
-    <section className="min-h- min-h-[180px] w-full max-w-xl border-t-4 border-dashed border-slate-600 bg-neutral-100 p-3 dark:border-slate-200 dark:bg-slate-800 dark:shadow-none">
+    <section className="min-h- min-h-[200px] w-full max-w-xl border-t-4 border-dashed border-slate-600 bg-neutral-100 p-3 dark:border-slate-200 dark:bg-slate-800 dark:shadow-none">
       <div className="flex justify-between">
         <div
           dir="auto"
