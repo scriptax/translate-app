@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useState } from "react";
-import SquareBTN from "./SquareBTN";
+import SquareBTN from "../common/SquareBTN";
 import Button from "../common/Button";
 import icons from "../../misc/SVGs";
 

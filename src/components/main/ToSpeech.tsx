@@ -1,5 +1,5 @@
 import { ReactElement, useContext, useEffect, useState, memo } from "react";
-import RoundBTN from "./SquareBTN";
+import RoundBTN from "../common/SquareBTN";
 import { LangContext, TransContext } from "./Main";
 import { voiceLanguages } from "../../data/langs";
 import AlertBox from "../common/AlertBox";

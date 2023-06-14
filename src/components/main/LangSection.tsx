@@ -1,6 +1,6 @@
 import { ReactElement, useContext, useState } from "react";
 import ChooseLangBTN from "./ChooseLangBTN";
-import RoundBTN from "./SquareBTN";
+import RoundBTN from "../common/SquareBTN";
 import LangList from "./LangList";
 import { LangContext, TransContext } from "./Main";
 

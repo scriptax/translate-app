@@ -1,6 +1,6 @@
 import { ReactElement, useState, useContext } from "react";
 import icons from "../../misc/SVGs";
-import RoundBTN from "./SquareBTN";
+import RoundBTN from "../common/SquareBTN";
 import LangItem from "./LangItem";
 import { LangContext } from "./Main";
 import languagesList from "../../data/langs";
