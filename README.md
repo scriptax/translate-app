@@ -1,6 +1,6 @@
 <div align="center">
   <h2>Simple translate web app</h2>
-  Check the live demo <a href="https://translate.stonebob.eu.org/">here<br />
+  Check the live demo <a href="https://translate.stonebob.eu.org/">here</a><br />
   Spotted a bug? No worries, open an issue.
   <img src="./public/preview.jpg">
 </div>
@@ -12,7 +12,7 @@ This is a simple multilingual translate web app. I made the UI with React and th
 1. clone the project:
 
 ```bash
-git clone git@github.com:Yazdun/react-dictionary-web-app.git
+git clone https://github.com/scriptax/translate-app.git
 ```
 
 2. install the dependencies:
