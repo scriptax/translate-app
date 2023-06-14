@@ -36,7 +36,7 @@ const EmptyMessage = (): ReactElement => {
   return (
     <div className="py-8 text-neutral-500 dark:text-slate-400 text-xl">
       Nothing here yet!<br />
-      Your translation history appear here.
+      Your translation history appears here.
     </div>
   );
 };
@@ -48,8 +48,8 @@ type PropsType = {
 function History({showHist, showHistHandler}: PropsType): ReactElement {
   const [histItems, setHistItems] = useState<HistItemsType[] | null>(null);
   const deleteHist = (): void => {
-    localStorage.setItem("translateAppHist", "");
-    setHistItems(null);
+    localStorage.setItem("translateAppHist", "[]");
+    setHistItems([]);
   };
   return (
     <>
