@@ -1,20 +1,20 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 type PropType = {
-  children: ReactNode;
+  text: string;
 };
-function AlertBox({ children }: PropType): ReactElement {
+function AlertBox({ text }: PropType): ReactElement {
   return (
     <AnimatePresence>
-      {children && (
+      {text && (
         <motion.div
           className="fixed bottom-10 left-4 z-50 h-12 border border-green-400 bg-green-100 p-2 pt-3 text-lg text-black shadow-lg "
           initial={{ x: "-100vw" }}
           animate={{ x: "16px" }}
           exit={{ x: "-100vw" }}
         >
-          {children}
+          {text}
         </motion.div>
       )}
     </AnimatePresence>

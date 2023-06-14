@@ -49,7 +49,7 @@ function OutputSection(): ReactElement {
           )}
         </div>
       </div>
-      <AlertBox>{copyMessage}</AlertBox>
+      <AlertBox text={copyMessage} />
     </section>
   );
 }

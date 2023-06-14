@@ -94,7 +94,7 @@ function ToSpeech({ role }: PropTypes): ReactElement {
           playHandler();
         }}
       />
-      <AlertBox>{message}</AlertBox>
+      <AlertBox text={message} />
     </>
   );
 }

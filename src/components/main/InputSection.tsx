@@ -90,7 +90,7 @@ function InputSection({loading}: PropsType): ReactElement {
         </div>
         <div className="text-sm">{translation.input.length}/500</div>
       </div>
-      <AlertBox>{message}</AlertBox>
+      <AlertBox text={message} />
     </section>
   );
 }

@@ -140,7 +140,7 @@ function Main({showHist, showHistHandler}: PropsType): ReactElement {
             </div>
           </TransContext.Provider>
         </LangContext.Provider>
-        <AlertBox>{netAlert}</AlertBox>
+        <AlertBox text={netAlert} />
       </section>
     </main>
   );
