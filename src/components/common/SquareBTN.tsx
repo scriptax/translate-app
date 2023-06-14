@@ -1,15 +1,14 @@
 import { ReactElement, useState } from "react";
 import icons from "../../misc/SVGs";
 
-type props = {
+type Props = {
   iconName: string;
   description: string;
   handler: () => undefined | void;
 };
-function SquareBTN({ iconName, handler, description }: props): ReactElement {
+function SquareBTN({ iconName, handler, description }: Props): ReactElement {
   let iconIndex = iconName as keyof object;
   const [tooltip, setTooltip] = useState<boolean>(false);
-
   return (
     <button
       className={`relative h-10 w-10 rounded-sm border-none outline-none hover:bg-neutral-200 active:bg-neutral-300 dark:hover:bg-slate-700 dark:active:bg-slate-700 dark:text-white`}
