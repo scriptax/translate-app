@@ -9,25 +9,33 @@ type HistItemsType = {
   input: string,
   output: string,
 }
-type HistElemType = {
+
+type HistItemsPropsType = {
+  item: HistItemsType;
+}
+const HistItem = ({item}: HistItemsPropsType): ReactElement => {
+  return (
+    <li className="w-full p-2 border-b dark:border-b-slate-500 text-sm">
+      <div className="flex items-center mb-4">{item.src} {icons.Right} {item.dest}</div>
+      <div>{item.input}</div>
+      <div>{item.output}</div>
+    </li>
+  );
+};
+
+type HistListType = {
   histItems: HistItemsType[] | null,
   setHistItems: React.Dispatch<React.SetStateAction<HistItemsType[] | null>>
 }
-const HistElem = ({histItems, setHistItems}: HistElemType): ReactElement => {
+const HistList = ({histItems, setHistItems}: HistListType): ReactElement => {
   useEffect(() => {
     setHistItems(JSON.parse(localStorage.getItem("translateAppHist") as string));
   }, []);
-  return(
+  return (
     <ul>
-      {
-      histItems && histItems.map((item, index): ReactElement => (
-        <li className="w-full p-2 border-b dark:border-b-slate-500 text-sm" key={index}>
-          <div className="flex items-center mb-4">{item.src} {icons.Right} {item.dest}</div>
-          <div>{item.input}</div>
-          <div>{item.output}</div>
-        </li>
-      ))
-      }
+      {histItems && histItems.map((item, index): ReactElement => (
+      <HistItem item={item} key={index} />
+      ))}
     </ul>
   );
 };
@@ -60,10 +68,9 @@ function History({showHist, showHistHandler}: PropsType): ReactElement {
           <SquareBTN iconName="Close" description="Close" handler={showHistHandler} />
         </div>
         <hr className="dark:border-slate-500" />
-        <HistElem histItems={histItems} setHistItems={setHistItems}/>
+        <HistList histItems={histItems} setHistItems={setHistItems}/>
         {histItems?.length === 0 && <EmptyMessage />}
-      </section>
-    }
+      </section>}
     </>
   );
 }
