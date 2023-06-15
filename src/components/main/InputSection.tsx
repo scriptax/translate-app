@@ -14,11 +14,14 @@ const TextArea = ({setMessage}: TextAreaProps): ReactElement => {
   const { translation, setTranslation } = useContext(TransContext);
 
   const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>): void | undefined => {
-    if (translation.input.length >= 500) {
-      setMessage("Text limit reached!");
-      return undefined;
-    }
     setTranslation((prev) => ({ ...prev, input: e.target.value }));
+    if (translation.input.length >= 500) {
+      setTranslation((prev) => ({ 
+        ...prev, 
+        input: prev.input.slice(0, prev.input.length - 1) 
+      }));
+      setMessage("Text limit reached!");
+    }
   };
   const adjustHeight = (): void => {
     const textarea = textareaRef.current!;
