@@ -1,7 +1,7 @@
 import { ReactElement, useContext, useEffect, useState, memo } from "react";
-import RoundBTN from "../common/SquareBTN";
 import { LangContext, TransContext } from "./Main";
 import { voiceLanguages } from "../../data/langs";
+import RoundBTN from "../common/SquareBTN";
 import AlertBox from "../common/AlertBox";
 
 type PropTypes = {
@@ -15,14 +15,14 @@ function ToSpeech({ role }: PropTypes): ReactElement {
   const [connection, setConnection] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("");
 
-  const playHandler = () => {
+  const playHandler = (): void | undefined => {
     let voiceIndex =
       role === "src"
         ? (selectedLangs.src.code as keyof object)
         : (selectedLangs.dest.code as keyof object);
     if (!connection) return undefined;
     if (!voiceLanguages[voiceIndex]) {
-      setMessage("No supported voice found");
+      setMessage("No supported voice found.");
       return undefined;
     }
     setPlaying((prev) => !prev);
