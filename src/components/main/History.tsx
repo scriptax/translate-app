@@ -33,7 +33,7 @@ const HistList = ({histItems, setHistItems}: HistListType): ReactElement => {
   }, []);
   return (
     <ul>
-      {histItems && histItems.map((item, index): ReactElement => (
+      {histItems && histItems.reverse().map((item, index): ReactElement => (
       <HistItem item={item} key={index} />
       ))}
     </ul>
