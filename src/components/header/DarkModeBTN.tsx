@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import icons from "../../misc/SVGs";
 
@@ -18,14 +18,14 @@ const ModeIcon = ({iconName}: ModeIconProps): ReactElement => {
   );
 };
 
-type darkModeBTNProps = {
-  darkModeHandler: () => void;
-  darkMode: boolean;
-};
-function DarkModeBTN({
-  darkModeHandler, 
-  darkMode
-}: darkModeBTNProps): ReactElement {
+function DarkModeBTN(): ReactElement {
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const darkModeHandler = (): void => {
+    setDarkMode((prev) => !prev);
+  };
+  useEffect(() => {
+    document.body.parentElement?.classList[darkMode ? "add" : "remove"]("dark");
+  }, [darkMode]);
   return (
     <button
       className="relative ml-3 h-10 w-10 overflow-hidden border border-solid border-green-300 bg-green-50 outline-none hover:bg-green-300 dark:bg-transparent dark:text-green-300 dark:hover:bg-green-300 dark:hover:text-slate-900"
