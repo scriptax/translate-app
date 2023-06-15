@@ -1,4 +1,4 @@
-import { ReactElement, useContext, useEffect, useState } from "react";
+import { ReactElement, useContext, useState } from "react";
 import { TransContext } from "./Main";
 import RoundBTN from "../common/SquareBTN";
 import AlertBox, {useAlertTimer} from "../common/AlertBox";
