@@ -2,7 +2,7 @@ import { ReactElement, useContext, useEffect, useState, memo } from "react";
 import { LangContext, TransContext } from "./Main";
 import { voiceLanguages } from "../../data/langs";
 import RoundBTN from "../common/SquareBTN";
-import AlertBox from "../common/AlertBox";
+import AlertBox, { useAlertTimer } from "../common/AlertBox";
 
 type PropTypes = {
   role: "src" | "dest";
@@ -28,17 +28,7 @@ function ToSpeech({ role }: PropTypes): ReactElement {
     setPlaying((prev) => !prev);
   };
 
-  useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-    if (message) {
-      timer = setTimeout(() => {
-        setMessage("");
-      }, 2000);
-    }
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [message]);
+  useAlertTimer(message, setMessage);
 
   useEffect(() => {
     window.addEventListener("offline", () => {

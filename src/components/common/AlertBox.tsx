@@ -1,5 +1,22 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+
+const useAlertTimer = (
+  dep: string,
+  setter: React.Dispatch<React.SetStateAction<string>>
+  ): void => {
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    if (dep) {
+      timer = setTimeout(() => {
+        setter("");
+      }, 2000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [dep]);
+}; 
 
 type PropType = {
   text: string;
@@ -21,4 +38,5 @@ function AlertBox({ text }: PropType): ReactElement {
   );
 }
 
+export { useAlertTimer };
 export default AlertBox;

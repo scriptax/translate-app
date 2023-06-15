@@ -3,7 +3,7 @@ import { TransContext } from "./Main";
 import SquareBTN from "../common/SquareBTN";
 import readClipboard from "../../misc/readClipboard";
 import ToSpeech from "./ToSpeech";
-import AlertBox from "../common/AlertBox";
+import AlertBox, { useAlertTimer } from "../common/AlertBox";
 import loadingGif from "../../assets/images/loading.gif";
 
 type TextAreaProps = {
@@ -60,17 +60,7 @@ function InputSection({loading}: PropsType): ReactElement {
     setTranslation((prev) => ({ ...prev, input: prev.input + text }));
   };
 
-  useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-    if(message) {
-      timer = setTimeout(() => {
-        setMessage("");
-      }, 2000);
-    }
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [message]);
+  useAlertTimer(message, setMessage);
 
   return (
     // we can also make the section flex and direction column to send the buttons to bottom
