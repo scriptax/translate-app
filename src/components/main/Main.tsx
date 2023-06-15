@@ -11,11 +11,14 @@ import LangSection from "./LangSection";
 import AlertBox from "../common/AlertBox";
 import History from "./History";
 
-type LangContextType = {
-  selectedLangs: {
-    src: { code: string; name: string };
-    dest: { code: string; name: string };
-  };
+type LangStateType = {
+  src: { code: string; name: string };
+  dest: { code: string; name: string };
+}
+type TransStateType = { input: string; output: string };
+
+interface LangContextType<T> {
+  selectedLangs: T;
   setSelectedLangs: React.Dispatch<
     React.SetStateAction<{
       src: { code: string; name: string };
@@ -23,21 +26,21 @@ type LangContextType = {
     }>
   >;
 };
-const LangContext = createContext<LangContextType>({
+interface TransContextType<T> {
+  translation: T;
+  setTranslation: React.Dispatch<
+    React.SetStateAction<{ input: string; output: string }>
+  >;
+};
+
+const LangContext = createContext<LangContextType<LangStateType>>({
   selectedLangs: {
     src: { code: "en", name: "English" },
     dest: { code: "fa", name: "Persian" },
   },
   setSelectedLangs: () => {},
 });
-
-type TransContextType = {
-  translation: { input: string; output: string };
-  setTranslation: React.Dispatch<
-    React.SetStateAction<{ input: string; output: string }>
-  >;
-};
-const TransContext = createContext<TransContextType>({
+const TransContext = createContext<TransContextType<TransStateType>>({
   translation: { input: "", output: "" },
   setTranslation: () => {},
 });
@@ -47,15 +50,10 @@ type PropsType = {
   showHistHandler: () => void;
 }
 function Main({showHist, showHistHandler}: PropsType): ReactElement {
-  type LangStateType = {
-    src: { code: string; name: string };
-    dest: { code: string; name: string };
-  };
   const [selectedLangs, setSelectedLangs] = useState<LangStateType>({
     src: { code: "en", name: "English" },
     dest: { code: "fa", name: "Persian" },
   });
-  type TransStateType = { input: string; output: string };
   const [translation, setTranslation] = useState<TransStateType>({
     input: "",
     output: "",
@@ -70,7 +68,6 @@ function Main({showHist, showHistHandler}: PropsType): ReactElement {
       if (response.ok) {
         let data = await response.json();
         let translation = await data.responseData.translatedText;
-        console.log(data.responseData.translatedText);
         setTranslation((prev) => {
           return { ...prev, output: decodeHTML(translation) };
         });
@@ -104,6 +101,7 @@ function Main({showHist, showHistHandler}: PropsType): ReactElement {
       }
     }, 1000);
   }, [translation.input, selectedLangs.src.code, selectedLangs.dest.code]);
+
   useEffect(() => {
     if(!localStorage.getItem("translateAppHist")) {
       localStorage.setItem("translateAppHist", JSON.stringify([]));
@@ -119,6 +117,7 @@ function Main({showHist, showHistHandler}: PropsType): ReactElement {
       localStorage.setItem("translateAppHist", JSON.stringify(histData));
     }
   }, [translation.output]);
+  
   useEffect(() => {
     window.addEventListener("offline", () => {
       setNetAlert("Check your Internet connection!");
