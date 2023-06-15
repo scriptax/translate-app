@@ -1,6 +1,6 @@
 import { ReactElement, useContext, useEffect, useState } from "react";
-import RoundBTN from "../common/SquareBTN";
 import { TransContext } from "./Main";
+import RoundBTN from "../common/SquareBTN";
 import AlertBox from "../common/AlertBox";
 import ToSpeech from "./ToSpeech";
 
@@ -31,7 +31,6 @@ function OutputSection(): ReactElement {
         >
           {translation.output}
         </div>
-        {/* <RoundBTN iconName="Close" description="Clear" handler={() => {}} /> Reserved */}
       </div>
       <div className="relative top-1 flex w-full items-center justify-between">
         <div>
