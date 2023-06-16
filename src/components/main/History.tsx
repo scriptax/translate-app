@@ -19,7 +19,7 @@ const HistItem = ({item}: HistItemsPropsType): ReactElement => {
     <li className="w-full p-2 border-b dark:border-b-slate-500 text-sm">
       <div className="flex items-center mb-4">{item.src} {icons.Right} {item.dest}</div>
       <div>{item.input}</div>
-      <div>{item.output}</div>
+      <div dir="auto">{item.output}</div>
     </li>
   );
 };
