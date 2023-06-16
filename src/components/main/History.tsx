@@ -1,4 +1,5 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState, useContext } from "react";
+import { TransContext } from "./Main";
 import SquareBTN from "../common/SquareBTN";
 import Button from "../common/Button";
 import icons from "../../misc/SVGs";
@@ -25,15 +26,11 @@ const HistItem = ({item}: HistItemsPropsType): ReactElement => {
 
 type HistListType = {
   histItems: HistItemsType[] | null,
-  setHistItems: React.Dispatch<React.SetStateAction<HistItemsType[] | null>>
 }
-const HistList = ({histItems, setHistItems}: HistListType): ReactElement => {
-  useEffect(() => {
-    setHistItems(JSON.parse(localStorage.getItem("translateAppHist") as string));
-  }, []);
+const HistList = ({histItems}: HistListType): ReactElement => {
   return (
     <ul>
-      {histItems && histItems.reverse().map((item, index): ReactElement => (
+      {histItems && [...histItems].reverse().map((item, index): ReactElement => (
       <HistItem item={item} key={index} />
       ))}
     </ul>
@@ -55,6 +52,10 @@ type PropsType = {
 }
 function History({showHist, showHistHandler}: PropsType): ReactElement {
   const [histItems, setHistItems] = useState<HistItemsType[] | null>(null);
+  const {translation} = useContext(TransContext);
+  useEffect(() => {
+    setHistItems(JSON.parse(localStorage.getItem("translateAppHist") as string));
+  }, [translation.output]);
   const deleteHist = (): void => {
     localStorage.setItem("translateAppHist", "[]");
     setHistItems([]);
@@ -68,7 +69,7 @@ function History({showHist, showHistHandler}: PropsType): ReactElement {
           <SquareBTN iconName="Close" description="Close" handler={showHistHandler} />
         </div>
         <hr className="dark:border-slate-500" />
-        <HistList histItems={histItems} setHistItems={setHistItems}/>
+        <HistList histItems={histItems} />
         {histItems?.length === 0 && <EmptyMessage />}
       </section>}
     </>
