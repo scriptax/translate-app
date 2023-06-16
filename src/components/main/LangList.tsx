@@ -64,6 +64,7 @@ function LangList({ closeLangs, prepLang, activeList }: props): ReactElement {
             placeholder="Search languages"
             value={searchTerm}
             onChange={searchHandler}
+            autoFocus
           />
         </div>
         <div>
