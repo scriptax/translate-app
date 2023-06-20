@@ -15,10 +15,10 @@ const TextArea = ({setMessage}: TextAreaProps): ReactElement => {
 
   const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>): void | undefined => {
     setTranslation((prev) => ({ ...prev, input: e.target.value }));
-    if (translation.input.length >= 500) {
+    if (textareaRef.current!.value.length >= 500) {
       setTranslation((prev) => ({ 
         ...prev, 
-        input: prev.input.slice(0, prev.input.length - 1) 
+        input: prev.input.slice(0, 500) 
       }));
       setMessage("Text limit reached!");
     }
@@ -31,6 +31,7 @@ const TextArea = ({setMessage}: TextAreaProps): ReactElement => {
   useEffect(() => {
     adjustHeight();
   }, [translation.input]);
+
 
   return (
     <textarea
@@ -53,11 +54,14 @@ function InputSection({loading}: PropsType): ReactElement {
 
   const pasteHandler = async (): Promise<void> => {
     let text: string = await readClipboard();
-    if (translation.input.length + text.length >= 500) {
-      setMessage("Text limit reached!");
-      return undefined;
-    }
     setTranslation((prev) => ({ ...prev, input: prev.input + text }));
+    if (translation.input.length + text.length >= 500) {
+      setTranslation((prev) => ({ 
+        ...prev, 
+        input: prev.input.slice(0, 500) 
+      }));
+      setMessage("Text limit reached!");
+    }
   };
 
   useAlertTimer(message, setMessage);
