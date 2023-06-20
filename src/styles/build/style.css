@@ -625,6 +625,14 @@ video {
   top: -2px;
 }
 
+.top-6 {
+  top: 1.5rem;
+}
+
+.top-4 {
+  top: 1rem;
+}
+
 .z-20 {
   z-index: 20;
 }
@@ -742,6 +750,10 @@ video {
 
 .min-h-screen {
   min-height: 100vh;
+}
+
+.min-h-\[160px\] {
+  min-height: 160px;
 }
 
 .w-1\/2 {
