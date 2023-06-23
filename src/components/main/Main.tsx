@@ -62,7 +62,8 @@ function Main({showHist, showHistHandler}: PropsType): ReactElement {
   const [loading, setLoading] = useState<boolean>(false);
   const fetchTranslation = async () => {
     let langpair = selectedLangs.src.code + "|" + selectedLangs.dest.code;
-    let url = `https://api.mymemory.translated.net/get?q=${translation.input}&langpair=${langpair}`;
+    let text = encodeURIComponent(translation.input);
+    let url = `https://api.mymemory.translated.net/get?q=${text}&langpair=${langpair}`;
     try {
       let response = await fetch(url);
       if (response.ok) {
