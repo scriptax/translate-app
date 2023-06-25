@@ -78,6 +78,7 @@ function Main({showHist, showHistHandler}: PropsType): ReactElement {
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -101,7 +102,7 @@ function Main({showHist, showHistHandler}: PropsType): ReactElement {
         });
       }
     }, 1000);
-  }, [translation.input, selectedLangs.src.code, selectedLangs.dest.code]);
+  }, [translation.input, selectedLangs.src.code, selectedLangs.dest.code, netAlert]);
 
   useEffect(() => {
     if(!localStorage.getItem("translateAppHist")) {
