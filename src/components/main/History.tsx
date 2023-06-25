@@ -16,7 +16,7 @@ type HistItemsPropsType = {
 }
 const HistItem = ({item}: HistItemsPropsType): ReactElement => {
   return (
-    <li className="w-full p-2 border-b dark:border-b-slate-500 text-sm">
+    <li className="w-full p-2 border-b dark:border-b-slate-500 break-words text-sm">
       <div className="flex items-center mb-4">{item.src} {icons.Right} {item.dest}</div>
       <div>{item.input}</div>
       <div dir="auto">{item.output}</div>
