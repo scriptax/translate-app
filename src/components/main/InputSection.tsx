@@ -93,7 +93,7 @@ function InputSection({loading}: PropsType): ReactElement {
             }}
           />
           {translation.input.length > 0 && <ToSpeech role="src" />}
-          {loading && <img className="inline-block pb-2 dark:invert" width="24px" height="8px" src={loadingGif} alt="loading" />}
+          {loading && <img className="inline-block pb-2 dark:invert" width="20px" height="7px" src={loadingGif} alt="loading" />}
         </div>
         <div className="text-sm">{translation.input.length}/500</div>
       </div>
