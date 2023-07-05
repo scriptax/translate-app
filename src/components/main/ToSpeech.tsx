@@ -47,7 +47,7 @@ function ToSpeech({ role }: PropTypes): ReactElement {
           : (selectedLangs.dest.code as keyof object);
       let language = voiceLanguages[voiceIndex];
       let text = role === "src" ? translation.input : translation.output;
-      let url: string = `https://api.voicerss.org/?key=c8ff2dc1156842cc8dab1156da674018&hl=${language}&c=MP3&src=${text}&f=48khz_16bit_mono`;
+      let url: string = `https://api.voicerss.org/?key=${process.env.REACT_APP_VOICERSS_API_KEY}&hl=${language}&c=MP3&src=${text}&f=48khz_16bit_mono`;
       try {
         const response = await fetch(url);
         if (response.ok) {
