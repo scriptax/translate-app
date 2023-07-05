@@ -39,9 +39,10 @@ const HistList = ({histItems}: HistListType): ReactElement => {
 
 const EmptyMessage = (): ReactElement => {
   return (
-    <div className="py-8 text-neutral-500 dark:text-slate-400 text-xl">
+    <div className="text-neutral-500 dark:text-slate-400 text-xl text-center">
+      <span className="w-7 mx-auto my-4 block">{icons.History}</span>
       Nothing here yet!<br />
-      Your translation history appears here.
+      Your translation history shows up here.<br />
     </div>
   );
 };
