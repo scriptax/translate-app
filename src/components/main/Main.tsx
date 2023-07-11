@@ -36,7 +36,7 @@ interface TransContextType<T> {
 const LangContext = createContext<LangContextType<LangStateType>>({
   selectedLangs: {
     src: { code: "en", name: "English" },
-    dest: { code: "fa", name: "Persian" },
+    dest: { code: "es", name: "Spanish" },
   },
   setSelectedLangs: () => {},
 });
@@ -52,7 +52,7 @@ type PropsType = {
 function Main({showHist, showHistHandler}: PropsType): ReactElement {
   const [selectedLangs, setSelectedLangs] = useState<LangStateType>({
     src: { code: "en", name: "English" },
-    dest: { code: "fa", name: "Persian" },
+    dest: { code: "es", name: "Spanish" },
   });
   const [translation, setTranslation] = useState<TransStateType>({
     input: "",
