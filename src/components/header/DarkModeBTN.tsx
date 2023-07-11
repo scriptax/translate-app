@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import icons from "../../misc/SVGs";
 
 type ModeIconProps = {
-  iconName: string,
-}
-const ModeIcon = ({iconName}: ModeIconProps): ReactElement => {
+  iconName: string;
+};
+const ModeIcon = ({ iconName }: ModeIconProps): ReactElement => {
   let iconIndex = iconName as keyof object;
   return (
     <motion.div
@@ -35,6 +35,6 @@ function DarkModeBTN(): ReactElement {
       {!darkMode && <ModeIcon iconName="Moon" />}
     </button>
   );
-};
+}
 
 export default DarkModeBTN;

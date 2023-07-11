@@ -8,17 +8,19 @@ import loadingGif from "../../assets/images/loading.gif";
 
 type TextAreaProps = {
   setMessage: React.Dispatch<React.SetStateAction<string>>;
-}
-const TextArea = ({setMessage}: TextAreaProps): ReactElement => {
+};
+const TextArea = ({ setMessage }: TextAreaProps): ReactElement => {
   const textareaRef = useRef<HTMLTextAreaElement>(null); // only for adjusting height
   const { translation, setTranslation } = useContext(TransContext);
 
-  const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>): void | undefined => {
+  const changeHandler = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+  ): void | undefined => {
     setTranslation((prev) => ({ ...prev, input: e.target.value }));
     if (textareaRef.current!.value.length >= 500) {
-      setTranslation((prev) => ({ 
-        ...prev, 
-        input: prev.input.slice(0, 500) 
+      setTranslation((prev) => ({
+        ...prev,
+        input: prev.input.slice(0, 500),
       }));
       setMessage("Text limit reached!");
     }
@@ -31,7 +33,6 @@ const TextArea = ({setMessage}: TextAreaProps): ReactElement => {
   useEffect(() => {
     adjustHeight();
   }, [translation.input]);
-
 
   return (
     <textarea
@@ -46,9 +47,9 @@ const TextArea = ({setMessage}: TextAreaProps): ReactElement => {
 };
 
 type PropsType = {
-  loading: boolean
-}
-function InputSection({loading}: PropsType): ReactElement {
+  loading: boolean;
+};
+function InputSection({ loading }: PropsType): ReactElement {
   const { translation, setTranslation } = useContext(TransContext);
   const [message, setMessage] = useState<string>("");
 
@@ -56,9 +57,9 @@ function InputSection({loading}: PropsType): ReactElement {
     let text: string = await readClipboard();
     setTranslation((prev) => ({ ...prev, input: prev.input + text }));
     if (translation.input.length + text.length >= 500) {
-      setTranslation((prev) => ({ 
-        ...prev, 
-        input: prev.input.slice(0, 500) 
+      setTranslation((prev) => ({
+        ...prev,
+        input: prev.input.slice(0, 500),
       }));
       setMessage("Text limit reached!");
     }
@@ -93,7 +94,15 @@ function InputSection({loading}: PropsType): ReactElement {
             }}
           />
           {translation.input.length > 0 && <ToSpeech role="src" />}
-          {loading && <img className="inline-block pb-2 dark:invert" width="20px" height="7px" src={loadingGif} alt="loading" />}
+          {loading && (
+            <img
+              className="inline-block pb-2 dark:invert"
+              width="20px"
+              height="7px"
+              src={loadingGif}
+              alt="loading"
+            />
+          )}
         </div>
         <div className="text-sm">{translation.input.length}/500</div>
       </div>

@@ -3,8 +3,8 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const useAlertTimer = (
   dep: string,
-  setter: React.Dispatch<React.SetStateAction<string>>
-  ): void => {
+  setter: React.Dispatch<React.SetStateAction<string>>,
+): void => {
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
     if (dep) {
@@ -16,7 +16,7 @@ const useAlertTimer = (
       clearTimeout(timer);
     };
   }, [dep]);
-}; 
+};
 
 type PropType = {
   text: string;

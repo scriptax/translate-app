@@ -14,7 +14,7 @@ import History from "./History";
 type LangStateType = {
   src: { code: string; name: string };
   dest: { code: string; name: string };
-}
+};
 type TransStateType = { input: string; output: string };
 
 interface LangContextType<T> {
@@ -25,13 +25,13 @@ interface LangContextType<T> {
       dest: { code: string; name: string };
     }>
   >;
-};
+}
 interface TransContextType<T> {
   translation: T;
   setTranslation: React.Dispatch<
     React.SetStateAction<{ input: string; output: string }>
   >;
-};
+}
 
 const LangContext = createContext<LangContextType<LangStateType>>({
   selectedLangs: {
@@ -48,8 +48,8 @@ const TransContext = createContext<TransContextType<TransStateType>>({
 type PropsType = {
   showHist: boolean;
   showHistHandler: () => void;
-}
-function Main({showHist, showHistHandler}: PropsType): ReactElement {
+};
+function Main({ showHist, showHistHandler }: PropsType): ReactElement {
   const [selectedLangs, setSelectedLangs] = useState<LangStateType>({
     src: { code: "en", name: "English" },
     dest: { code: "es", name: "Spanish" },
@@ -104,31 +104,38 @@ function Main({showHist, showHistHandler}: PropsType): ReactElement {
         });
       }
     }, 1000);
-  }, [translation.input, selectedLangs.src.code, selectedLangs.dest.code, netAlert]);
+  }, [
+    translation.input,
+    selectedLangs.src.code,
+    selectedLangs.dest.code,
+    netAlert,
+  ]);
 
   useEffect(() => {
-    if(!localStorage.getItem("translateAppHist")) {
+    if (!localStorage.getItem("translateAppHist")) {
       localStorage.setItem("translateAppHist", JSON.stringify([]));
     }
-    if(translation.input.length > 0) {
-      const histData = JSON.parse(localStorage.getItem("translateAppHist") as string);
+    if (translation.input.length > 0) {
+      const histData = JSON.parse(
+        localStorage.getItem("translateAppHist") as string,
+      );
       histData.push({
-        src: selectedLangs.src.name, 
-        dest: selectedLangs.dest.name, 
-        input: translation.input, 
-        output: translation.output
+        src: selectedLangs.src.name,
+        dest: selectedLangs.dest.name,
+        input: translation.input,
+        output: translation.output,
       });
       localStorage.setItem("translateAppHist", JSON.stringify(histData));
     }
   }, [translation.output]);
 
   useEffect(() => {
-    if(!firstRender.current) {
+    if (!firstRender.current) {
       localStorage.setItem("translateAppLang", JSON.stringify(selectedLangs));
     }
     firstRender.current = false;
   }, [selectedLangs.src.name, selectedLangs.dest.name]);
-  
+
   useEffect(() => {
     window.addEventListener("offline", () => {
       setNetAlert("Check your Internet connection!");
@@ -137,8 +144,10 @@ function Main({showHist, showHistHandler}: PropsType): ReactElement {
       setNetAlert("");
     });
 
-    const langHist = JSON.parse(localStorage.getItem("translateAppLang") as string);
-    if(langHist) {
+    const langHist = JSON.parse(
+      localStorage.getItem("translateAppLang") as string,
+    );
+    if (langHist) {
       setSelectedLangs(langHist);
     }
   }, []);

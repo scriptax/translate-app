@@ -15,8 +15,15 @@ function Footer(): ReactElement {
         </a>
       </div>
       <div className="text-xs pt-1">
-        Translation API by <a className="underline" href="https://mymemory.translated.net/">MyMemory</a><br />
-        Speech synthesis API by <a className="underline" href="https://voicerss.org/">Voice RSS</a>
+        Translation API by{" "}
+        <a className="underline" href="https://mymemory.translated.net/">
+          MyMemory
+        </a>
+        <br />
+        Speech synthesis API by{" "}
+        <a className="underline" href="https://voicerss.org/">
+          Voice RSS
+        </a>
       </div>
     </footer>
   );
