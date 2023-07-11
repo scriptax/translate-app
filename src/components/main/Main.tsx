@@ -60,6 +60,8 @@ function Main({showHist, showHistHandler}: PropsType): ReactElement {
   });
   const [netAlert, setNetAlert] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const firstRender = useRef<boolean>(true);
+
   const fetchTranslation = async () => {
     let langpair = selectedLangs.src.code + "|" + selectedLangs.dest.code;
     let text = encodeURIComponent(translation.input);
@@ -119,6 +121,13 @@ function Main({showHist, showHistHandler}: PropsType): ReactElement {
       localStorage.setItem("translateAppHist", JSON.stringify(histData));
     }
   }, [translation.output]);
+
+  useEffect(() => {
+    if(!firstRender.current) {
+      localStorage.setItem("translateAppLang", JSON.stringify(selectedLangs));
+    }
+    firstRender.current = false;
+  }, [selectedLangs.src.name, selectedLangs.dest.name]);
   
   useEffect(() => {
     window.addEventListener("offline", () => {
@@ -127,6 +136,11 @@ function Main({showHist, showHistHandler}: PropsType): ReactElement {
     window.addEventListener("online", () => {
       setNetAlert("");
     });
+
+    const langHist = JSON.parse(localStorage.getItem("translateAppLang") as string);
+    if(langHist) {
+      setSelectedLangs(langHist);
+    }
   }, []);
   return (
     <main className="flex-grow mx-auto w-[93%] max-w-xl">
