@@ -44,7 +44,7 @@ const HistList = ({ histItems }: HistListType): ReactElement => {
 
 const EmptyMessage = (): ReactElement => {
   return (
-    <div className="text-neutral-500 dark:text-slate-400 text-xl text-center">
+    <div className="text-neutral-500 dark:text-slate-400 text-xl text-center absolute top-1/2 -translate-y-1/2">
       <span className="w-7 mx-auto my-4 block">{icons.History}</span>
       Nothing here yet!
       <br />
@@ -73,7 +73,7 @@ function History({ showHist, showHistHandler }: PropsType): ReactElement {
   return (
     <>
       {showHist && (
-        <section className="absolute left-[-2px] top-[-2px] z-20 max-h-[73vh] w-[100.8%] border border-solid border-neutral-300 bg-white p-3 shadow-xl dark:border-slate-700 dark:bg-slate-900 overflow-y-scroll scrollbar">
+        <section className="absolute left-[-2px] top-[-2px] z-20 min-h-[60vh] w-[100.8%] border border-solid border-neutral-300 bg-white p-3 shadow-xl dark:border-slate-700 dark:bg-slate-900 overflow-y-scroll scrollbar">
           <div className="flex h-10 mb-4 items-center justify-between rounded-md px-3">
             <Button text="Delete All" handler={deleteHist} />
             <SquareBTN
