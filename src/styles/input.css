@@ -23,4 +23,19 @@
   .scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgb(159, 255, 194);
   }
+  .scrollbar-darker::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .scrollbar-darker::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-darker::-webkit-scrollbar-thumb {
+    background: rgb(140, 255, 176);
+  }
+
+  .scrollbar-darker::-webkit-scrollbar-thumb:hover {
+    background: rgb(109, 255, 162);
+  }
 }

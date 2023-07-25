@@ -9,7 +9,7 @@ function Footer(): ReactElement {
   return (
     <footer className="h-20 m-auto w-full max-w-xl px-4 dark:text-white sm:px-0">
       <div className="flex items-center justify-between text-sm">
-        <span>© {date?.getFullYear()} By scriptax.</span>
+        <span>© {date?.getFullYear()} By Majid Moradi.</span>
         <a href="https://github.com/scriptax/translate-app" target="blank">
           {icons.Github}
         </a>

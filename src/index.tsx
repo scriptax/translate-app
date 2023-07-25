@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import App from "./App";
 import "./styles/build/style.css";
 // import reportWebVitals from "./reportWebVitals";
@@ -13,4 +13,4 @@ root.render(
   // </React.StrictMode>
 );
 
-serviceWorkerRegistration.register(); 
+serviceWorkerRegistration.register();

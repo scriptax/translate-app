@@ -73,9 +73,9 @@ function History({ showHist, showHistHandler }: PropsType): ReactElement {
   return (
     <>
       {showHist && (
-        <section className="absolute left-[-2px] top-[-2px] z-20 max-h-[73vh] w-[100.8%] border border-solid border-neutral-300 bg-white p-3 shadow-xl dark:border-slate-700 dark:bg-slate-900 overflow-y-scroll scrollbar">
+        <section className="absolute left-[-2px] top-[-2px] z-20 max-h-[73vh] w-[100.8%] border border-solid border-neutral-300 bg-white p-3 shadow-xl dark:border-slate-700 dark:bg-slate-900 overflow-y-scroll scrollbar dark:scrollbar-darker">
           <div className="flex h-10 mb-4 items-center justify-between rounded-md px-3">
-            <Button text="Delete All" handler={deleteHist} />
+            <Button text="Clear All" handler={deleteHist} />
             <SquareBTN
               iconName="Close"
               description="Close"
