@@ -1,16 +1,20 @@
 import { ReactElement } from "react";
+import icons from "../../misc/SVGs";
 
 type PropsType = {
   text: string;
+  icon: string;
   handler: () => void;
 };
-function Button({ text, handler }: PropsType): ReactElement {
+function Button({ text, icon, handler }: PropsType): ReactElement {
+  let iconKey = icon as keyof object;
   return (
     <button
-      className=" relative h-10 w-24 border border-solid border-green-300 bg-green-50 pt-1 text-lg font-light outline-none hover:bg-green-300 dark:bg-transparent dark:text-green-300 dark:hover:bg-green-300 dark:hover:text-slate-900"
+      className="relative h-10 px-3 mx-1 rounded-lg bg-slate-200 outline-none hover:bg-slate-300 dark:bg-slate-600 dark:text-slate-100 dark:hover:bg-slate-500 flex items-center"
       onClick={handler}
     >
-      {text}
+      <span>{icons[iconKey]}</span>
+      <span className="ml-1">{text}</span>
     </button>
   );
 }

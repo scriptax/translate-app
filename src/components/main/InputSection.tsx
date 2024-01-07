@@ -1,5 +1,5 @@
 import { ReactElement, useState, useRef, useEffect, useContext } from "react";
-import { TransContext } from "./Main";
+import { TransContext } from "./../../contexts/TransProvider";
 import SquareBTN from "../common/SquareBTN";
 import readClipboard from "../../misc/readClipboard";
 import ToSpeech from "./ToSpeech";
@@ -38,7 +38,7 @@ const TextArea = ({ setMessage }: TextAreaProps): ReactElement => {
     <textarea
       placeholder="Type here to translate"
       dir="auto"
-      className="min-h-[120px] w-full resize-none bg-transparent text-xl font-extralight text-black outline-none hover:cursor-text dark:text-white"
+      className="min-h-[120px] w-full resize-none bg-transparent text-lg font-light text-black outline-none hover:cursor-text dark:text-white"
       onChange={changeHandler}
       value={translation.input}
       ref={textareaRef}

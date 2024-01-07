@@ -5,7 +5,7 @@ module.exports = {
     extend: {
     },
     fontFamily: {
-      primary: ["Overpass", "Tahoma", "sans serif"]
+      primary: ["Roboto", "Tahoma", "sans serif"]
     }
   },
   darkMode: 'class',

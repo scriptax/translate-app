@@ -53,10 +53,10 @@ const EmptyMessage = (): ReactElement => {
 };
 
 type PropsType = {
-  showHist: boolean;
-  showHistHandler: () => void;
+  showSaved: boolean;
+  showSavedHandler: () => void;
 };
-function History({ showHist, showHistHandler }: PropsType): ReactElement {
+function History({ showSaved, showSavedHandler }: PropsType): ReactElement {
   const [histItems, setHistItems] = useState<HistItemsType[] | null>(null);
   const { translation } = useContext(TransContext);
   useEffect(() => {
@@ -70,14 +70,14 @@ function History({ showHist, showHistHandler }: PropsType): ReactElement {
   };
   return (
     <>
-      {showHist && (
+      {showSaved && (
         <section className="absolute left-[-2px] top-[-2px] z-20 h-[73vh] w-[100.8%] border border-solid border-neutral-300 bg-white p-3 shadow-xl dark:border-slate-700 dark:bg-slate-900 overflow-y-scroll scrollbar">
           <div className="flex h-10 mb-4 items-center justify-between rounded-md px-3">
             <Button text="Clear All" handler={deleteHist} icon="Trash" />
             <SquareBTN
               iconName="Close"
               description="Close"
-              handler={showHistHandler}
+              handler={showSavedHandler}
             />
           </div>
           <hr className="dark:border-slate-500" />

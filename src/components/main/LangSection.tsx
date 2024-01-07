@@ -2,7 +2,8 @@ import { ReactElement, useContext, useState } from "react";
 import ChooseLangBTN from "./ChooseLangBTN";
 import RoundBTN from "../common/SquareBTN";
 import LangList from "./LangList";
-import { LangContext, TransContext } from "./Main";
+import { LangContext } from "./../../contexts/LangProvider";
+import { TransContext } from "./../../contexts/TransProvider";
 
 function LangSection(): ReactElement {
   const { selectedLangs, setSelectedLangs } = useContext(LangContext);

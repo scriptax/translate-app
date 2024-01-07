@@ -2,7 +2,7 @@ import { ReactElement, useState, useContext } from "react";
 import icons from "../../misc/SVGs";
 import RoundBTN from "../common/SquareBTN";
 import LangItem from "./LangItem";
-import { LangContext } from "./Main";
+import { LangContext } from "./../../contexts/LangProvider";
 import languagesList from "../../data/langs";
 
 type LanguagesType = {
@@ -55,7 +55,7 @@ function LangList({ closeLangs, prepLang, activeList }: props): ReactElement {
     setSearchTerm(e.target.value);
   };
   return (
-    <div className="absolute left-[-2px] top-[-10px] z-20 max-h-[75vh] w-[100.8%] overflow-auto border border-solid border-neutral-300 bg-white p-3 shadow-xl dark:border-slate-700 dark:bg-slate-900 scrollbar dark:scrollbar-darker">
+    <div className="absolute left-[-2px] top-[-10px] z-20 max-h-[75vh] w-[100.8%] overflow-auto border border-solid border-neutral-300 bg-white p-3 shadow-xl dark:border-slate-700 dark:bg-slate-900 scrollbar">
       <div className="mb-3 flex h-10 w-full items-center justify-between">
         <div className="flex h-10 w-3/4 items-center rounded-md px-3 sm:w-2/4">
           <div className="mr-2">{icons.Search}</div>

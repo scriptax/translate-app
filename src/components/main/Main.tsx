@@ -1,63 +1,27 @@
-import {
-  ReactElement,
-  createContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { ReactElement, useContext, useEffect, useRef, useState } from "react";
+import { TransContext } from "../../contexts/TransProvider";
+import { LangContext } from "../../contexts/LangProvider";
 import InputSection from "./InputSection";
 import OutputSection from "./OutputSection";
 import LangSection from "./LangSection";
 import AlertBox from "../common/AlertBox";
 import History from "./History";
-
-type LangStateType = {
-  src: { code: string; name: string };
-  dest: { code: string; name: string };
-};
-type TransStateType = { input: string; output: string };
-
-interface LangContextType<T> {
-  selectedLangs: T;
-  setSelectedLangs: React.Dispatch<
-    React.SetStateAction<{
-      src: { code: string; name: string };
-      dest: { code: string; name: string };
-    }>
-  >;
-}
-interface TransContextType<T> {
-  translation: T;
-  setTranslation: React.Dispatch<
-    React.SetStateAction<{ input: string; output: string }>
-  >;
-}
-
-const LangContext = createContext<LangContextType<LangStateType>>({
-  selectedLangs: {
-    src: { code: "en", name: "English" },
-    dest: { code: "es", name: "Spanish" },
-  },
-  setSelectedLangs: () => {},
-});
-const TransContext = createContext<TransContextType<TransStateType>>({
-  translation: { input: "", output: "" },
-  setTranslation: () => {},
-});
+import Saved from "./Saved";
 
 type PropsType = {
   showHist: boolean;
+  showSaved: boolean;
   showHistHandler: () => void;
+  showSavedHandler: () => void;
 };
-function Main({ showHist, showHistHandler }: PropsType): ReactElement {
-  const [selectedLangs, setSelectedLangs] = useState<LangStateType>({
-    src: { code: "en", name: "English" },
-    dest: { code: "es", name: "Spanish" },
-  });
-  const [translation, setTranslation] = useState<TransStateType>({
-    input: "",
-    output: "",
-  });
+export default function Main({
+  showHist,
+  showSaved,
+  showHistHandler,
+  showSavedHandler,
+}: PropsType): ReactElement {
+  const { translation, setTranslation } = useContext(TransContext);
+  const { selectedLangs, setSelectedLangs } = useContext(LangContext);
   const [netAlert, setNetAlert] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const firstRender = useRef<boolean>(true);
@@ -70,9 +34,9 @@ function Main({ showHist, showHistHandler }: PropsType): ReactElement {
       let response = await fetch(url);
       if (response.ok) {
         let data = await response.json();
-        let translation = await data.responseData.translatedText;
+        let translate = await data.responseData.translatedText;
         setTranslation((prev) => {
-          return { ...prev, output: decodeHTML(translation) };
+          return { ...prev, output: decodeHTML(translate) };
         });
         setLoading(false);
       } else {
@@ -153,22 +117,16 @@ function Main({ showHist, showHistHandler }: PropsType): ReactElement {
   }, []);
   return (
     <main className="flex-grow mx-auto w-[93%] max-w-xl">
-      <section className="relative w-full border border-neutral-300 bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900 dark:text-white">
-        <LangContext.Provider value={{ selectedLangs, setSelectedLangs }}>
-          <TransContext.Provider value={{ translation, setTranslation }}>
-            <History showHist={showHist} showHistHandler={showHistHandler} />
-            <LangSection />
-            <div className="relative w-full border-t border-neutral-300 dark:border-slate-700">
-              <InputSection loading={loading} />
-              <OutputSection />
-            </div>
-          </TransContext.Provider>
-        </LangContext.Provider>
+      <section className="relative w-full border  bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900 dark:text-white">
+        <History showHist={showHist} showHistHandler={showHistHandler} />
+        {/* <Saved showSaved={showSaved} showSavedHandler={showSavedHandler} /> */}
+        <LangSection />
+        <div className="relative w-full border-t border-neutral-300 dark:border-slate-700">
+          <InputSection loading={loading} />
+          <OutputSection />
+        </div>
         <AlertBox text={netAlert} />
       </section>
     </main>
   );
 }
-
-export { LangContext, TransContext };
-export default Main;

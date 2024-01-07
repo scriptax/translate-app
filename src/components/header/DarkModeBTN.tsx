@@ -28,11 +28,11 @@ function DarkModeBTN(): ReactElement {
   }, [darkMode]);
   return (
     <button
-      className="relative ml-3 h-10 w-10 overflow-hidden border border-solid border-green-300 bg-green-50 outline-none hover:bg-green-300 dark:bg-transparent dark:text-green-300 dark:hover:bg-green-300 dark:hover:text-slate-900"
+      className="relative ml-1 h-10 w-10 overflow-hidden rounded-lg outline-none bg-slate-200 hover:bg-slate-300 dark:bg-slate-600 dark:text-slate-100 dark:hover:bg-slate-500 "
       onClick={darkModeHandler}
     >
-      {darkMode && <ModeIcon iconName="Sun" />}
-      {!darkMode && <ModeIcon iconName="Moon" />}
+      {!darkMode && <ModeIcon iconName="Sun" />}
+      {darkMode && <ModeIcon iconName="Moon" />}
     </button>
   );
 }
