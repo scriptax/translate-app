@@ -20,8 +20,8 @@ const HistItem = ({ item }: HistItemsPropsType): ReactElement => {
       <div className="flex items-center mb-4">
         {item.src} {icons.Right} {item.dest}
       </div>
-      <div>{item.input}</div>
-      <div dir="auto">{item.output}</div>
+      <p>{item.input}</p>
+      <p dir="auto">{item.output}</p>
     </li>
   );
 };
@@ -72,13 +72,16 @@ function History({ showHist, showHistHandler }: PropsType): ReactElement {
     <>
       {showHist && (
         <section className="absolute left-[-2px] top-[-2px] z-20 h-[73vh] w-[100.8%] border border-solid border-neutral-300 bg-white p-3 shadow-xl dark:border-slate-700 dark:bg-slate-900 overflow-y-scroll scrollbar">
-          <div className="flex h-10 mb-4 items-center justify-between rounded-md px-3">
-            <Button text="Clear All" handler={deleteHist} icon="Trash" />
+          <div className="flex items-center justify-between rounded-md px-3">
+            <strong>Translation History</strong>
             <SquareBTN
               iconName="Close"
               description="Close"
               handler={showHistHandler}
             />
+          </div>
+          <div className="my-2">
+            <Button text="Clear All" handler={deleteHist} icon="Trash" />
           </div>
           <hr className="dark:border-slate-500" />
           <HistList histItems={histItems} />

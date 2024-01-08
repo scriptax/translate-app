@@ -1,12 +1,29 @@
-import { ReactElement, useContext, useState } from "react";
+import { ReactElement, useContext, useEffect, useState } from "react";
 import { TransContext } from "./../../contexts/TransProvider";
+import { LangContext } from "./../../contexts/LangProvider";
 import RoundBTN from "../common/SquareBTN";
 import AlertBox, { useAlertTimer } from "../common/AlertBox";
 import ToSpeech from "./ToSpeech";
+import { SaveContext } from "./../../contexts/SaveProvider";
 
 function OutputSection(): ReactElement {
   const { translation } = useContext(TransContext);
+  const { selectedLangs } = useContext(LangContext);
   const [copyMessage, setCopyMessage] = useState<string>("");
+  const [isBookmarked, setBookmarked] = useState(false);
+  const { bookmarks, toggleBookmark } = useContext(SaveContext);
+
+  useEffect(() => {
+    setBookmarked(() => {
+      return bookmarks.some(
+        (item) =>
+          item.input === translation.input &&
+          item.output === translation.output,
+      );
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bookmarks, translation.output]);
+
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     setCopyMessage("Translation copied!");
@@ -34,6 +51,33 @@ function OutputSection(): ReactElement {
                 }}
               />
               <ToSpeech role="dest" />
+              {isBookmarked ? (
+                <RoundBTN
+                  iconName="Bookmarked"
+                  description="Remove from bookmarks"
+                  handler={() => {
+                    toggleBookmark({
+                      ...translation,
+                      src: selectedLangs.src.name,
+                      dest: selectedLangs.dest.name,
+                    });
+                    setBookmarked(false);
+                  }}
+                />
+              ) : (
+                <RoundBTN
+                  iconName="Bookmark"
+                  description="Add to bookmarks"
+                  handler={() => {
+                    toggleBookmark({
+                      ...translation,
+                      src: selectedLangs.src.name,
+                      dest: selectedLangs.dest.name,
+                    });
+                    setBookmarked(true);
+                  }}
+                />
+              )}
             </>
           )}
         </div>

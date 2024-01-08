@@ -119,7 +119,7 @@ export default function Main({
     <main className="flex-grow mx-auto w-[93%] max-w-xl">
       <section className="relative w-full border  bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900 dark:text-white">
         <History showHist={showHist} showHistHandler={showHistHandler} />
-        {/* <Saved showSaved={showSaved} showSavedHandler={showSavedHandler} /> */}
+        <Saved showSaved={showSaved} showSavedHandler={showSavedHandler} />
         <LangSection />
         <div className="relative w-full border-t border-neutral-300 dark:border-slate-700">
           <InputSection loading={loading} />

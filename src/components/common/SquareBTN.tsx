@@ -3,7 +3,7 @@ import icons from "../../misc/SVGs";
 
 type Props = {
   iconName: string;
-  description: string;
+  description?: string;
   handler: () => undefined | void;
 };
 function SquareBTN({ iconName, handler, description }: Props): ReactElement {
@@ -21,9 +21,9 @@ function SquareBTN({ iconName, handler, description }: Props): ReactElement {
       }}
     >
       {icons?.[iconIndex]}
-      {tooltip && (
+      {tooltip && description && (
         <span
-          className={`absolute -bottom-8 left-1/2 z-40 block -translate-x-1/2 whitespace-nowrap rounded-md bg-gray-700 p-1 text-sm text-white dark:bg-gray-300 dark:text-black`}
+          className={`absolute -bottom-8 left-1/2 z-40 block -translate-x-1/2 whitespace-nowrap rounded-md bg-gray-700 p-1 text-xs text-white dark:bg-gray-300 dark:text-black`}
         >
           {description}
         </span>

@@ -4,6 +4,7 @@ import Main from "./components/main/Main";
 import Footer from "./components/footer/Footer";
 import TransProvider from "./contexts/TransProvider";
 import LangProvider from "./contexts/LangProvider";
+import SaveProvider from "./contexts/SaveProvider";
 
 function App() {
   const [showHist, setShowHist] = useState<boolean>(false);
@@ -27,12 +28,14 @@ function App() {
       />
       <LangProvider>
         <TransProvider>
-          <Main
-            showHist={showHist}
-            showSaved={showSaved}
-            showHistHandler={showHistHandler}
-            showSavedHandler={showSavedHandler}
-          />
+          <SaveProvider>
+            <Main
+              showHist={showHist}
+              showSaved={showSaved}
+              showHistHandler={showHistHandler}
+              showSavedHandler={showSavedHandler}
+            />
+          </SaveProvider>
         </TransProvider>
       </LangProvider>
       <Footer />

@@ -25,7 +25,7 @@ function Header({
         />
       </div>
       <div className="flex items-center justify-center">
-        {/* <Button text="Saved" handler={showSavedHandler} icon="Bookmarked" /> */}
+        <Button text="Saved" handler={showSavedHandler} icon="Bookmarked" />
         <Button text="History" handler={showHistHandler} icon="Hist" />
         <DarkModeBTN />
       </div>
